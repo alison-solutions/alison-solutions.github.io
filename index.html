@@ -1069,6 +1069,63 @@
         html {
             scroll-behavior: smooth;
         }
+
+    /* Video Lightbox Modal */
+    .video-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.35s ease-in-out;
+    }
+    .video-modal-overlay.visible {
+      display: flex;
+    }
+    .video-modal-overlay.active {
+      background: rgba(0, 0, 0, 0.85);
+    }
+    .video-modal-container {
+      position: relative;
+      width: 90vw;
+      max-width: 900px;
+      background: #AAAAAA;
+      opacity: 0;
+      transform: translateY(1.5rem);
+      transition: opacity 0.325s ease-in-out, transform 0.325s ease-in-out;
+      pointer-events: none;
+    }
+    .video-modal-overlay.active .video-modal-container {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .video-modal-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .video-modal-iframe-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    .video-modal-iframe-wrapper video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
     </style>
 </head>
 <body>
@@ -1261,7 +1318,7 @@
                 <p>
                     <span class="logo-inline"><span class="logo-ai">AI</span>ison Solutions</span> 提供由博士級專業支援的戰略性 AI 與區塊鏈解決方案。Alison Lin 擁有國立交通大學資訊工程博士、國立清華大學資訊工程碩士學位，累積超過 10 年橫跨企業與新創相關經驗，曾擔任技術開發者、系統架構設計者、團隊領導者、線上課程講師與受邀講者等。其建立的 <span class="logo-inline"><span class="logo-ai">AI</span>ison Solutions</span> 提供的生產級解決方案，完美結合學術嚴謹與產業卓越。除核心 AI 與區塊鏈技術開發外，也提供技術文件撰寫、白皮書編輯、技術諮詢等專業支援服務。
                 </p>
-                <a href="https://youtu.be/Cy9p-EoZX3Y" target="_blank" class="cta-button cta-primary">了解更多</a>
+                <a href="#" class="cta-button cta-primary open-video-modal">了解更多</a>
             </div>
         </div>
 
@@ -1312,7 +1369,7 @@
             </p>
             <div class="cta-buttons">
                 <a href="mailto:yishanl@cs.nctu.edu.tw" target="_blank" class="cta-button cta-primary">Email 聯絡</a>
-                <a href="https://youtu.be/Cy9p-EoZX3Y" target="_blank" class="cta-button cta-secondary">Solutions 概述</a>
+                <a href="#" class="cta-button cta-secondary open-video-modal">Solutions 概述</a>
             </div>
         </div>
     </section>
@@ -1335,6 +1392,9 @@
                 </a>
                 <a href="https://linkedin.com/in/alison1013" target="_blank" class="social-link">
                     <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://youtube.com/@alison1013-mk" target="_blank" class="social-link">
+                    <i class="fab fa-youtube"></i> YouTube
                 </a>
                 <a href="https://domaineks.com" target="_blank" class="social-link">
                     <i class="fas fa-globe"></i> Domaineks
@@ -1394,8 +1454,10 @@
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
@@ -1475,6 +1537,58 @@
             ctaContent.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(ctaContent);
         }
+
+        // Video Lightbox Modal
+        document.querySelectorAll('.open-video-modal').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                const modal = document.getElementById('video-modal');
+                document.body.style.overflow = 'hidden';
+                modal.classList.add('visible');
+                void modal.offsetWidth;
+                modal.classList.add('active');
+                document.getElementById('video-modal-player').play();
+            });
+        });
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const container = modal.querySelector('.video-modal-container');
+            const video = document.getElementById('video-modal-player');
+            video.pause();
+            video.currentTime = 0;
+            modal.classList.remove('active');
+            container.addEventListener('transitionend', () => {
+                modal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }, { once: true });
+        }
+
+        document.addEventListener('click', e => {
+            if (e.target.id === 'close-video-modal') closeVideoModal();
+            if (e.target.id === 'video-modal') closeVideoModal();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeVideoModal();
+        });
     </script>
+
+    <!-- Video Lightbox Modal -->
+    <div id="video-modal" class="video-modal-overlay">
+        <div class="video-modal-container">
+            <button class="video-modal-close" id="close-video-modal" aria-label="關閉">&times;</button>
+            <div class="video-modal-iframe-wrapper">
+                <video
+                    id="video-modal-player"
+                    src="images/aIison-solutions.mp4"
+                    controls
+                    playsinline
+                    poster="images/cover.png"
+                    preload="none"
+                    controlslist="nodownload">
+                </video>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
