@@ -607,6 +607,102 @@
             transform: translateX(5px);
         }
 
+        /* Showcases (inside About Section) */
+        .showcases-highlight {
+            max-width: 1400px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+        }
+
+        .showcases-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .showcases-header h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .showcases-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .showcases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .showcase-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 217, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.15);
+        }
+
+        .showcase-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .showcase-icon i {
+            color: var(--accent);
+        }
+
+        .showcase-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .showcase-desc {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .showcase-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.2rem;
+        }
+
+        .showcase-tag {
+            background: rgba(0, 217, 255, 0.08);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            color: rgba(0, 217, 255, 0.85);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
         /* Team Section */
         .team-section {
             padding: 8rem 0;
@@ -1036,12 +1132,14 @@
             }
 
             .team-container,
-            .credentials-highlight {
+            .credentials-highlight,
+            .showcases-highlight {
                 padding: 0 1.5rem;
             }
 
             .team-grid,
-            .credentials-grid {
+            .credentials-grid,
+            .showcases-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1090,7 +1188,7 @@
     .video-modal-container {
       position: relative;
       width: 90vw;
-      max-width: 900px;
+      max-width: 1280px;
       background: #AAAAAA;
       opacity: 0;
       transform: translateY(1.5rem);
@@ -1322,6 +1420,55 @@
             </div>
         </div>
 
+        <!-- Showcases -->
+        <div class="showcases-highlight">
+            <div class="showcases-header">
+                <h3>AI 代表性專案經歷</h3>
+                <p>橫跨校園、醫療、製造、政府、資安等產業的實際落地經驗</p>
+            </div>
+            <div class="showcases-grid">
+                <div class="showcase-card">
+                    <div class="credential-badge">Featured</div>
+                    <div class="showcase-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="showcase-title">國立陽明交通大學《NYCU GPT 校園智多星》 — 校園智能助手</div>
+                    <div class="showcase-desc">整合 RAG、MCP、AI Agent 架構的校園智能助手，服務陽明交通大學學生與教職員，涵蓋生活資訊、獎學金媒合、校務行政流程等場景。</div>
+                    <a href="#" class="credential-link open-video-modal" data-src="https://youtu.be/U0UmeAyWj0U">了解更多 →</a>
+                </div>
+                <div class="showcase-card">
+                    <div class="credential-badge">Featured</div>
+                    <div class="showcase-icon"><i class="fas fa-leaf"></i></div>
+                    <div class="showcase-title">經濟部產業發展署 產業節能減碳資訊網 — AI 諮詢機器人《智慧小芽》</div>
+                    <div class="showcase-desc">為政府官方平台導入 AI 智能客服，提供企業與民眾節能減碳諮詢服務，涵蓋全站爬蟲偵測、語意向量化、知識庫優化與 Web Chatbot 整合。</div>
+                    <a href="https://sdd.nat.gov.tw/ghg/AIAgent/" target="_blank" class="credential-link">了解更多 →</a>
+                </div>
+                <div class="showcase-card">
+                    <div class="credential-badge">Featured</div>
+                    <div class="showcase-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="showcase-title">台灣自主晶片驗證與 AI Agent 驅動 SOC 之資安監測系統</div>
+                    <div class="showcase-desc">結合台灣自主晶片 HSM / PUF 安全核心與 AI Agent 驅動的 SOC 資安監測架構，整合 SIEM、FIDO/Passkey、IAM RBAC，參與數位發展部數位產業署 DIGITAL+ 計畫申請。</div>
+                    <a href="#" class="credential-link open-video-modal">了解更多 →</a>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-icon"><i class="fas fa-spa"></i></div>
+                    <div class="showcase-title">AI 醫美診所智能諮詢師 / 智能客服</div>
+                    <div class="showcase-desc">結合 DX-RAG 混合式智能檢索與 DX-MLI 多層次知識整合的診所客服系統，支援療程諮詢、預約引導、定期推播等完整服務流程，整合 LINE OA。</div>
+                    <a href="#" class="credential-link open-video-modal">了解更多 →</a>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-icon"><i class="fas fa-file-invoice"></i></div>
+                    <div class="showcase-title">AI 智能訂單解析 ERP / CRM 整合服務</div>
+                    <div class="showcase-desc">採用 DX-MFP 多格式訂單解析與 DX-DCT 雙層成本追蹤技術，支援 7+ 種訂單格式、LLM/Vision 語義解析、批次處理，無縫整合 ERP / CRM 系統，結合 LINE OA 操作介面。</div>
+                    <a href="#" class="credential-link open-video-modal">了解更多 →</a>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <div class="showcase-title">AI 智能診所客戶訪談摘要報告系統</div>
+                    <div class="showcase-desc">專為口述場景設計，將諮詢、會議、訪談語音自動轉譯為文字並產出結構化摘要，大幅減少人工記錄時間，支援 Web 查詢、摘要下載與月報表，整合 LINE OA。</div>
+                    <a href="#" class="credential-link open-video-modal">了解更多 →</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Credentials Highlight -->
         <div class="credentials-highlight">
             <div class="credentials-grid">
@@ -1548,12 +1695,24 @@
         document.querySelectorAll('.open-video-modal').forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault();
+                const src = btn.dataset.src || null;
                 const modal = document.getElementById('video-modal');
+                const video = document.getElementById('video-modal-player');
+                const yt = document.getElementById('video-modal-youtube');
                 document.body.style.overflow = 'hidden';
                 modal.classList.add('visible');
                 void modal.offsetWidth;
                 modal.classList.add('active');
-                document.getElementById('video-modal-player').play();
+                if (src && src.includes('youtu')) {
+                    const videoId = src.match(/(?:youtu\.be\/|v=|\/embed\/)([^?&]+)/)?.[1];
+                    yt.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&cc_load_policy=1`;
+                    yt.style.display = 'block';
+                    video.style.display = 'none';
+                } else {
+                    video.style.display = 'block';
+                    yt.style.display = 'none';
+                    video.play();
+                }
             });
         });
 
@@ -1561,8 +1720,10 @@
             const modal = document.getElementById('video-modal');
             const container = modal.querySelector('.video-modal-container');
             const video = document.getElementById('video-modal-player');
+            const yt = document.getElementById('video-modal-youtube');
             video.pause();
             video.currentTime = 0;
+            yt.src = '';
             modal.classList.remove('active');
             container.addEventListener('transitionend', () => {
                 modal.classList.remove('visible');
@@ -1593,6 +1754,12 @@
                     preload="none"
                     controlslist="nodownload">
                 </video>
+                <iframe
+                    id="video-modal-youtube"
+                    style="display:none;position:absolute;inset:0;width:100%;height:100%;border:0;"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div>
