@@ -287,6 +287,188 @@
             pointer-events: none;
         }
 
+        /* Animated orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+            animation: orbFloat linear infinite;
+        }
+        .hero-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            animation-duration: 18s;
+            animation-name: orbFloat1;
+        }
+        .hero-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: 20%;
+            animation-duration: 24s;
+            animation-name: orbFloat2;
+        }
+        .hero-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.08) 0%, transparent 70%);
+            top: 40%;
+            left: -50px;
+            animation-duration: 20s;
+            animation-name: orbFloat3;
+        }
+
+        /* Scanning line */
+        .hero-scanline {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.4), transparent);
+            pointer-events: none;
+            z-index: 0;
+            animation: scanline 8s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat1 {
+            0%   { transform: translate(0, 0) scale(1); }
+            33%  { transform: translate(-60px, 80px) scale(1.1); }
+            66%  { transform: translate(40px, -50px) scale(0.95); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes orbFloat2 {
+            0%   { transform: translate(0, 0) scale(1); }
+            33%  { transform: translate(80px, -60px) scale(1.05); }
+            66%  { transform: translate(-40px, 40px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes orbFloat3 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(60px, -80px) scale(1.15); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes scanline {
+            0%   { top: -2px; opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* HUD Elements */
+        .hero-hud {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(0, 217, 255, 0.6);
+        }
+
+        /* Corner brackets */
+        .hud-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hud-corner::before, .hud-corner::after {
+            content: '';
+            position: absolute;
+            background: rgba(0, 217, 255, 0.5);
+        }
+        .hud-corner::before { width: 100%; height: 2px; }
+        .hud-corner::after  { width: 2px; height: 100%; }
+        .hud-corner-tl { top: 1.5rem; left: 1.5rem; }
+        .hud-corner-tl::before { top: 0; left: 0; }
+        .hud-corner-tl::after  { top: 0; left: 0; }
+        .hud-corner-tr { top: 1.5rem; right: 1.5rem; transform: scaleX(-1); }
+        .hud-corner-bl { bottom: 1.5rem; left: 1.5rem; transform: scaleY(-1); }
+        .hud-corner-br { bottom: 1.5rem; right: 1.5rem; transform: scale(-1); }
+
+        /* Status panel */
+        .hud-status {
+            bottom: 2.5rem;
+            left: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .hud-status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hud-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 217, 255, 0.8);
+            animation: hudBlink 2s ease-in-out infinite;
+        }
+        .hud-dot.delay { animation-delay: 0.7s; }
+        .hud-dot.delay2 { animation-delay: 1.4s; }
+
+        /* Stats panel */
+        .hud-stats {
+            top: 2.5rem;
+            right: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.6rem;
+        }
+        .hud-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.15rem;
+        }
+        .hud-stat-label { opacity: 0.5; font-size: 0.6rem; }
+        .hud-stat-value { font-size: 0.85rem; color: rgba(0, 217, 255, 0.9); }
+        .hud-bar {
+            width: 80px;
+            height: 3px;
+            background: rgba(0, 217, 255, 0.15);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .hud-bar-fill {
+            height: 100%;
+            background: rgba(0, 217, 255, 0.7);
+            border-radius: 2px;
+            animation: hudBarPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes hudBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+        @keyframes hudBarPulse {
+            0%   { width: 60%; }
+            50%  { width: 90%; }
+            100% { width: 60%; }
+        }
+
+        @media (max-width: 768px) {
+            .hud-corner, .hud-stats { display: none; }
+            .hud-status {
+                bottom: 1.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                flex-direction: row;
+                gap: 1.2rem;
+                white-space: nowrap;
+                font-size: 0.6rem;
+            }
+        }
+
         .hero-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -1274,6 +1456,39 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-scanline"></div>
+        <!-- HUD corners -->
+        <div class="hud-corner hud-corner-tl"></div>
+        <div class="hud-corner hud-corner-tr"></div>
+        <div class="hud-corner hud-corner-bl"></div>
+        <div class="hud-corner hud-corner-br"></div>
+        <!-- HUD status -->
+        <div class="hero-hud hud-status">
+            <div class="hud-status-item"><div class="hud-dot"></div> SYSTEM ONLINE</div>
+            <div class="hud-status-item"><div class="hud-dot delay"></div> AI ENGINE READY</div>
+            <div class="hud-status-item"><div class="hud-dot delay2"></div> SECURE CONNECTION</div>
+        </div>
+        <!-- HUD stats -->
+        <div class="hero-hud hud-stats">
+            <div class="hud-stat">
+                <span class="hud-stat-label">PROJECTS DEPLOYED</span>
+                <span class="hud-stat-value" id="hud-projects">06</span>
+                <div class="hud-bar"><div class="hud-bar-fill" style="width:75%"></div></div>
+            </div>
+            <div class="hud-stat">
+                <span class="hud-stat-label">EXPERIENCE</span>
+                <span class="hud-stat-value">10+ YRS</span>
+                <div class="hud-bar"><div class="hud-bar-fill" style="width:85%;animation-delay:1s"></div></div>
+            </div>
+            <div class="hud-stat">
+                <span class="hud-stat-label">AI MODELS INTEGRATED</span>
+                <span class="hud-stat-value" id="hud-models">--</span>
+                <div class="hud-bar"><div class="hud-bar-fill" style="width:65%;animation-delay:1.5s"></div></div>
+            </div>
+        </div>
         <div class="hero-content">
             <div class="hero-label">博士級人工智慧與區塊鏈解決方案</div>
             <h1>
@@ -1674,6 +1889,21 @@
         addStaggerAnimation('.team-card', 0.1);
         addStaggerAnimation('.credential-card', 0.12);
         addStaggerAnimation('.showcase-card', 0.12);
+
+        // HUD counter animation
+        function animateCounter(el, target, duration) {
+            let start = 0;
+            const step = target / (duration / 50);
+            const timer = setInterval(() => {
+                start += step;
+                if (start >= target) { start = target; clearInterval(timer); }
+                el.textContent = String(Math.floor(start)).padStart(2, '0');
+            }, 50);
+        }
+        const hudProjects = document.getElementById('hud-projects');
+        const hudModels = document.getElementById('hud-models');
+        if (hudProjects) animateCounter(hudProjects, 6, 1500);
+        if (hudModels) { hudModels.textContent = '00'; animateCounter(hudModels, 5, 2000); }
 
         // Add fade-up animation to about section elements
         const aboutElements = [
