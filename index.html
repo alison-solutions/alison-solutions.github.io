@@ -1446,7 +1446,7 @@
                     <div class="showcase-icon"><i class="fas fa-shield-alt"></i></div>
                     <div class="showcase-title">台灣自主晶片驗證與 AI Agent 驅動 SOC 之資安監測系統</div>
                     <div class="showcase-desc">結合台灣自主晶片 HSM / PUF 安全核心與 AI Agent 驅動的 SOC 資安監測架構，整合 SIEM、FIDO/Passkey、IAM RBAC，參與數位發展部數位產業署 DIGITAL+ 計畫申請。</div>
-                    <a href="#" class="credential-link open-video-modal">了解更多 →</a>
+                    <a href="images/ai-agent-soc.png" class="credential-link open-video-modal">了解更多 →</a>
                 </div>
                 <div class="showcase-card">
                     <div class="showcase-icon"><i class="fas fa-spa"></i></div>
@@ -1493,14 +1493,14 @@
                     <h4 class="credential-title">實體與線上課程講師</h4>
                     <p class="credential-org">CBA 亞洲區塊鏈學院、MasterTalks、資訊工業策進會</p>
                     <p class="credential-detail">加密貨幣與區塊鏈技術等專業培訓</p>
-                    <a href="https://www.facebook.com/events/804771799864119/" target="_blank" class="credential-link">了解更多 →</a>
+                    <a href="https://cbaofficial.com/cba-info/cba區塊鏈學院認證儀式記者會" target="_blank" class="credential-link">了解更多 →</a>
                 </div>
                 <div class="credential-card highlight">
                     <div class="credential-icon"><i class="fas fa-microphone-alt"></i></div>
                     <h4 class="credential-title">企業與社群講者</h4>
                     <p class="credential-org">MediaTek、Taipei Ethereum Meetup、Women In Blockchain</p>
                     <p class="credential-detail">透過講座分享區塊鏈開發與產業見解</p>
-                    <a href="https://docs.google.com/presentation/d/1vm6zi3BX1IQ8ZUaQaWKSdmMtE0YxeuMR" target="_blank" class="credential-link">了解更多 →</a>
+                    <a href="https://www.facebook.com/events/804771799864119" target="_blank" class="credential-link">了解更多 →</a>
                 </div>
             </div>
         </div>
@@ -1695,10 +1695,11 @@
         document.querySelectorAll('.open-video-modal').forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault();
-                const src = btn.dataset.src || null;
+                const src = btn.dataset.src || btn.getAttribute('href') || null;
                 const modal = document.getElementById('video-modal');
                 const video = document.getElementById('video-modal-player');
                 const yt = document.getElementById('video-modal-youtube');
+                const img = document.getElementById('video-modal-image');
                 document.body.style.overflow = 'hidden';
                 modal.classList.add('visible');
                 void modal.offsetWidth;
@@ -1708,9 +1709,16 @@
                     yt.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&cc_load_policy=1`;
                     yt.style.display = 'block';
                     video.style.display = 'none';
+                    img.style.display = 'none';
+                } else if (src && /\.(png|jpe?g|gif|webp)$/i.test(src)) {
+                    img.src = src;
+                    img.style.display = 'block';
+                    video.style.display = 'none';
+                    yt.style.display = 'none';
                 } else {
                     video.style.display = 'block';
                     yt.style.display = 'none';
+                    img.style.display = 'none';
                     video.play();
                 }
             });
@@ -1724,6 +1732,7 @@
             video.pause();
             video.currentTime = 0;
             yt.src = '';
+            document.getElementById('video-modal-image').src = '';
             modal.classList.remove('active');
             container.addEventListener('transitionend', () => {
                 modal.classList.remove('visible');
@@ -1757,9 +1766,13 @@
                 <iframe
                     id="video-modal-youtube"
                     style="display:none;position:absolute;inset:0;width:100%;height:100%;border:0;"
-                    allow="autoplay; encrypted-media"
+                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
                     allowfullscreen>
                 </iframe>
+                <img
+                    id="video-modal-image"
+                    style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;"
+                    src="" alt="">
             </div>
         </div>
     </div>
