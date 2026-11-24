@@ -1268,6 +1268,210 @@
             box-shadow: 0 6px 25px rgba(0, 217, 255, 0.5);
         }
 
+        /* Personal Project: Online Course */
+        .course-section {
+            padding: 8rem 3rem;
+            background: var(--bg-dark);
+        }
+
+        .course-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .course-main {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .course-video {
+            position: relative;
+            display: block;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.15);
+        }
+
+        .course-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .course-video:hover,
+        .course-video:focus-visible {
+            border-color: var(--accent);
+            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.3);
+        }
+
+        .course-video:hover img {
+            transform: scale(1.03);
+        }
+
+        .course-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 76px;
+            height: 76px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: var(--gradient-2);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 8px 30px rgba(0, 217, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .course-play i {
+            margin-left: 4px;
+        }
+
+        .course-video:hover .course-play {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .course-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .course-tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-tag.primary {
+            background: var(--gradient-2);
+            border-color: transparent;
+            color: var(--primary);
+        }
+
+        .course-tag.coupon {
+            border: 1px dashed var(--accent-warm);
+            background: rgba(0, 255, 163, 0.08);
+            color: var(--accent-warm);
+            font-family: inherit;
+            line-height: inherit;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .course-tag.coupon:hover {
+            background: rgba(0, 255, 163, 0.18);
+        }
+
+        .course-tag.coupon i {
+            margin-left: 0.4rem;
+        }
+
+        .course-title {
+            font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.35;
+            text-wrap: balance;
+            color: var(--text-light);
+            margin-bottom: 0.6rem;
+        }
+
+        .course-tagline {
+            color: var(--accent);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .course-desc {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-facts {
+            display: flex;
+            gap: 4rem;
+            padding: 1.1rem 0;
+            margin-bottom: 1.8rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.15);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.15);
+        }
+
+        .course-facts dt {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .course-facts dd {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .course-cta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .course-cta .cta-button {
+            padding: 0.9rem 1.8rem;
+        }
+
+        .course-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .course-feature {
+            background: var(--bg-card);
+            padding: 1.8rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .course-feature > i {
+            color: var(--accent);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-feature h4 {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-feature p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .course-disclaimer {
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
         /* Responsive */
         @media (max-width: 968px) {
             nav {
@@ -1294,8 +1498,22 @@
                 padding: 6rem 1.5rem 3rem;
             }
 
-            .services, .expertise, .cta-section {
+            .services, .expertise, .course-section, .cta-section {
                 padding: 4rem 1.5rem;
+            }
+
+            .course-section {
+                scroll-margin-top: 2rem;
+            }
+
+            .course-main {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 2.5rem;
+            }
+
+            .course-features {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                margin-top: 3rem;
             }
 
             .services-grid {
@@ -1347,6 +1565,16 @@
                 width: 100%;
                 max-width: 300px;
                 text-align: center;
+            }
+
+            .course-cta .cta-button {
+                max-width: none;
+            }
+
+            .course-play {
+                width: 54px;
+                height: 54px;
+                font-size: 1.15rem;
             }
         }
 
@@ -1660,6 +1888,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#course">Course</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="menu-toggle" aria-label="Toggle menu">
@@ -1678,6 +1907,7 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#course">Course</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
@@ -1976,6 +2206,72 @@
         </div>
     </section>
 
+    <!-- Personal Project: Online Course -->
+    <section id="course" class="course-section">
+        <div class="course-container">
+            <div class="section-header">
+                <div class="section-label">Personal Project</div>
+                <h2 class="section-title">個人專案</h2>
+                <p class="section-subtitle">
+                    將 AI 與區塊鏈的實戰經驗，化為零基礎也能上手的線上課程與 AI 系統。
+                </p>
+            </div>
+
+            <div class="course-main">
+                <a href="https://youtu.be/HnJFV8sPA4I" class="course-video open-video-modal" data-src="https://youtu.be/HnJFV8sPA4I" aria-label="播放課程介紹影片">
+                    <img src="images/crypto2-cover.jpg" width="1280" height="720" loading="lazy" alt="Crypto 加密貨幣交易實戰攻略 2.0 課程介紹影片封面">
+                    <span class="course-play"><i class="fas fa-play"></i></span>
+                </a>
+
+                <div class="course-info">
+                    <div class="course-tags">
+                        <span class="course-tag primary">2027 全新改版</span>
+                        <span class="course-tag">零基礎、不需寫程式</span>
+                        <button type="button" id="course-coupon-btn" class="course-tag coupon" data-code="Alison500" aria-label="複製 500 元折扣碼 Alison500">500 元折扣碼 <span>Alison500</span><i class="far fa-copy"></i></button>
+                    </div>
+                    <h3 class="course-title">Crypto 加密貨幣交易實戰攻略 2.0</h3>
+                    <p class="course-tagline">一鍵啟動你的 AI 定投戰情室</p>
+                    <p class="course-desc">
+                        投資加密貨幣，難的往往不是買進，而是有一套規則，並且長期照著做。課程從認識比特幣與區塊鏈開始，帶你完成交易所實際操作、用 TradingView 回測技術指標，最後在自己的電腦上啟動 AI 定投戰情室，依照你的交易性格有紀律地執行定投。
+                    </p>
+                    <dl class="course-facts">
+                        <div><dt>課程長度</dt><dd>5 小時 8 分鐘</dd></div>
+                        <div><dt>課程結構</dt><dd>7 章 59 節</dd></div>
+                    </dl>
+                    <div class="course-cta">
+                        <a href="https://mastertalks.tw/products/crypto2-0?ref=ALISON-2" target="_blank" rel="noopener" class="cta-button cta-primary">前往課程</a>
+                        <a href="https://youtu.be/HnJFV8sPA4I" class="cta-button cta-secondary open-video-modal" data-src="https://youtu.be/HnJFV8sPA4I">觀看影片介紹</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-features">
+                <div class="course-feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>動態定投</h4>
+                    <p>以固定頻率買進為基礎，技術指標觸發特定條件時，自動加快買進節奏，逢低多累積，不用整天盯盤。</p>
+                </div>
+                <div class="course-feature">
+                    <i class="fas fa-brain"></i>
+                    <h4>AI 決策模型</h4>
+                    <p>解析你的交易性格描述，多面向逐項評分，決定加速節奏；AI 在自己的電腦上執行，無須另付訂閱費。</p>
+                </div>
+                <div class="course-feature">
+                    <i class="fas fa-comment-dots"></i>
+                    <h4>AI 實況解說</h4>
+                    <p>即時播報行情變化、新聞快訊與每筆成交，並為每一次加碼買進寫下理由，清楚列在交易紀錄裡備查。</p>
+                </div>
+                <div class="course-feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>先模擬、再實盤</h4>
+                    <p>用真實行情演練，確認後再切換實際交易；設有單次、每日、每月金額上限，API Key 不開提領權限。</p>
+                </div>
+            </div>
+
+            <p class="course-disclaimer">※ 任何投資都有風險，本課程內容僅供教學參考，不構成任何投資建議。</p>
+        </div>
+    </section>
+
     <!-- Patents Section -->
     <section id="patents" class="patents-section">
         <div class="credentials-highlight">
@@ -2176,6 +2472,21 @@
         addStaggerAnimation('.team-card', 0.1);
         addStaggerAnimation('.credential-card', 0.12);
         addStaggerAnimation('.showcase-card', 0.12);
+        addStaggerAnimation('.course-video, .course-info', 0.2);
+        addStaggerAnimation('.course-feature', 0.12);
+
+        // Course coupon: click to copy
+        const couponBtn = document.getElementById('course-coupon-btn');
+        if (couponBtn) {
+            couponBtn.addEventListener('click', async () => {
+                const label = couponBtn.querySelector('span');
+                try {
+                    await navigator.clipboard.writeText(couponBtn.dataset.code);
+                    label.textContent = '已複製';
+                    setTimeout(() => { label.textContent = couponBtn.dataset.code; }, 1500);
+                } catch (e) {}
+            });
+        }
 
         // HUD counter animation
         function animateCounter(el, target, duration) {
